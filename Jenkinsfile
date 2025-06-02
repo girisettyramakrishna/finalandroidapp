@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/girisettyramakrishna/androidfinalapp.git', branch: 'master'
+                git url: 'https://github.com/girisettyramakrishna/finalandroidapp.git', branch: 'master'
             }
         }
 
