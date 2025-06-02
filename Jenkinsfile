@@ -3,7 +3,8 @@ pipeline {
 
     environment {
         ANDROID_HOME = '/home/ubuntu/android-sdk'
-        PATH+ANDROID = "${ANDROID_HOME}/cmdline-tools/latest/bin:${ANDROID_HOME}/platform-tools"
+        // Use Jenkins-specific syntax to extend PATH
+        PATH = "${ANDROID_HOME}/cmdline-tools/latest/bin:${ANDROID_HOME}/platform-tools:${env.PATH}"
     }
 
     stages {
