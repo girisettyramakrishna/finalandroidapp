@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         ANDROID_HOME = "/home/ubuntu/android-sdk"
-        PATH = "${ANDROID_HOME}/cmdline-tools/latest/bin:${ANDROID_HOME}/platform-tools:${PATH}"
+        PATH+ANDROID = "${ANDROID_HOME}/cmdline-tools/latest/bin:${ANDROID_HOME}/platform-tools"
     }
 
     stages {
@@ -16,8 +16,14 @@ pipeline {
         stage('Prepare SDK & Permissions') {
             steps {
                 sh '''
-                    echo "PATH: $PATH"
-                    chmod +x ./gradlew || echo "gradlew not found"
+                    echo "✅ Environment PATH:"
+                    echo "$PATH"
+                    if [ -f ./gradlew ]; then
+                        chmod +x ./gradlew
+                    else
+                        echo "❌ gradlew file not found"
+                        exit 1
+                    fi
                 '''
             }
         }
