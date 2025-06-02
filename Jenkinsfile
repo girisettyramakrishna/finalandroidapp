@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         ANDROID_HOME = '/home/ubuntu/android-sdk'
-        PATH = "${ANDROID_HOME}/cmdline-tools/latest/bin:${ANDROID_HOME}/platform-tools:${PATH}"
+        PATH+ANDROID = "${ANDROID_HOME}/cmdline-tools/latest/bin:${ANDROID_HOME}/platform-tools"
     }
 
     stages {
@@ -16,8 +16,8 @@ pipeline {
         stage('Prepare SDK & Permissions') {
             steps {
                 sh '''
-                    echo sdk.dir=${ANDROID_HOME} > local.properties
-                    chmod +x gradlew
+                    echo "sdk.dir=${ANDROID_HOME}" > local.properties
+                    chmod +x ./gradlew
                 '''
             }
         }
